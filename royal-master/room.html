@@ -165,152 +165,152 @@
         </div>
     </div>
 </div>
-<script>
-    let tbody = document.getElementById("list");
-    let addForm = document.getElementById("addForm");
-    let editForm = document.getElementById("editForm");
-    loadData()
-    function loadData() {
-        $.ajax({
-            type: "GET",
-            headers:{
-                Authorization: 'Bearer ' + localStorage.getItem('token')
-            },
-            url: 'http://localhost:8080/room',
-            success: function (data) {
-                console.log(data)
-                display(data);
+<!--<script>-->
+<!--    let tbody = document.getElementById("list");-->
+<!--    let addForm = document.getElementById("addForm");-->
+<!--    let editForm = document.getElementById("editForm");-->
+<!--    loadData()-->
+<!--    function loadData() {-->
+<!--        $.ajax({-->
+<!--            type: "GET",-->
+<!--            headers:{-->
+<!--                Authorization: 'Bearer ' + localStorage.getItem('token')-->
+<!--            },-->
+<!--            url: 'http://localhost:8080/room',-->
+<!--            success: function (data) {-->
+<!--                console.log(data)-->
+<!--                display(data);-->
 
 
-            },
-            error: function (error) {
-                console.log(error)
-            }
-        })
+<!--            },-->
+<!--            error: function (error) {-->
+<!--                console.log(error)-->
+<!--            }-->
+<!--        })-->
 
-    }
-    function display(data) {
-        let str = "";
-        console.log(data)
-        for (let i = 0; i < data.length; i++) {
-            str += `<tr>
-                                <td>${i + 1}</td>
-                                <td>${data[i].nameRoom}</td>
-                                <td>${data[i].roomType}</td>
-                                <td>${data[i].roomKind}</td>
-                                <td>${data[i].view}</td>
-                                <td>${data[i].statusRoom}</td>
-                                <td>${data[i].priceRoom}</td>
-                                <td><img src = "pictures/${data[i].pictures}" width="100px"></td>
-                                <td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" onclick="showEditForm(${data[i].idRoom})">Edit</button></td>
-                                <td><button class="btn btn-primary" onclick="showDeleteForm(${data[i].idRoom})">Delete</button></td>
-                           </tr>`
-        }
-        tbody.innerHTML = str;
-    }
-
-
-    function showAddForm() {
-        $("#exampleModal").modal("show");
-
-    }
-    function add() {
-        let formData = new FormData(addForm);
-        console.log(formData)
-        $.ajax({
-            type: "POST",
-            headers:{
-                Authorization: 'Bearer ' + localStorage.getItem('token')
-            },
-
-            enctype: 'multipart/form-data',
-            url: "http://localhost:8080/room",
-            data: formData,
-            processData: false,
-            contentType: false,
-            cache: false,
-            timeout: 1000000,
-            success: function (data) {
-                console.log(data)
-                $("#exampleModal").modal("hide");
-                loadData()
-                addForm.reset();
-
-            },
-            errors: function (error) {
-                console.log(error)
-            }
-        })
-
-    }
-    function showEditForm(id) {
-        $("#exampleModal1").modal("show");
-
-        $.ajax({
-            type: "GET",
-            headers:{
-                Authorization: 'Bearer ' + localStorage.getItem("token")
-            },
-            url: "http://localhost:8080/room/" + id,
-            success: function (data) {
-                console.log(data)
-                document.getElementById('idRoom').value = data.idRoom;
-                document.getElementById('roomTypeEdit').value = data.roomType;
-                document.getElementById('roomKindEdit').value = data.roomKind;
-                document.getElementById('viewEdit').value = data.view;
-                document.getElementById('statusRoomEdit').value = data.statusRoom;
-                document.getElementById('priceRoomEdit').value = data.priceRoom;
-                document.getElementById('newFile').innerHTML = `<img src="photos/${data.picture1}" width="100px" ">`;
-
-            }
-        })
-    }
+<!--    }-->
+<!--    function display(data) {-->
+<!--        let str = "";-->
+<!--        console.log(data)-->
+<!--        for (let i = 0; i < data.length; i++) {-->
+<!--            str += `<tr>-->
+<!--                                <td>${i + 1}</td>-->
+<!--                                <td>${data[i].nameRoom}</td>-->
+<!--                                <td>${data[i].roomType}</td>-->
+<!--                                <td>${data[i].roomKind}</td>-->
+<!--                                <td>${data[i].view}</td>-->
+<!--                                <td>${data[i].statusRoom}</td>-->
+<!--                                <td>${data[i].priceRoom}</td>-->
+<!--                                <td><img src = "pictures/${data[i].pictures}" width="100px"></td>-->
+<!--                                <td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" onclick="showEditForm(${data[i].idRoom})">Edit</button></td>-->
+<!--                                <td><button class="btn btn-primary" onclick="showDeleteForm(${data[i].idRoom})">Delete</button></td>-->
+<!--                           </tr>`-->
+<!--        }-->
+<!--        tbody.innerHTML = str;-->
+<!--    }-->
 
 
-    function update() {
-        let id = document.getElementById('id').value;
-        let formData = new FormData(editForm);
-        $.ajax({
-            type: "PUT",
-            headers:{
-                Authorization: 'Bearer ' + localStorage.getItem("token")
-            },
-            enctype: 'multipart/form-data',
-            url: "http://localhost:8080/room/" + id,
-            data: formData,
-            processData: false,
-            contentType: false,
-            cache: false,
-            success: function () {
+<!--    function showAddForm() {-->
+<!--        $("#exampleModal").modal("show");-->
 
-                // $('#exampleModal').modal('hide');
+<!--    }-->
+<!--    function add() {-->
+<!--        let formData = new FormData(addForm);-->
+<!--        console.log(formData)-->
+<!--        $.ajax({-->
+<!--            type: "POST",-->
+<!--            headers:{-->
+<!--                Authorization: 'Bearer ' + localStorage.getItem('token')-->
+<!--            },-->
 
-                loadData();
-                editForm.reset();
-            },
-            error: function (error) {
-                console.log(error)
-            }
-        })
-    }
-    function showDeleteForm(id) {
-        if (confirm("Are you sure ???")) {
-            $.ajax({
-                headers:{
-                    Authorization: 'Bearer ' + localStorage.getItem("token")
-                },
-                type: 'DELETE',
-                url: 'http://localhost:8080/room/' + id,
-                success: function () {
-                    loadData()
-                },
-                error: function (error) {
-                    console.log(error)
-                }
-            })
-        }
-    }
+<!--            enctype: 'multipart/form-data',-->
+<!--            url: "http://localhost:8080/room",-->
+<!--            data: formData,-->
+<!--            processData: false,-->
+<!--            contentType: false,-->
+<!--            cache: false,-->
+<!--            timeout: 1000000,-->
+<!--            success: function (data) {-->
+<!--                console.log(data)-->
+<!--                $("#exampleModal").modal("hide");-->
+<!--                loadData()-->
+<!--                addForm.reset();-->
 
-</script>
+<!--            },-->
+<!--            errors: function (error) {-->
+<!--                console.log(error)-->
+<!--            }-->
+<!--        })-->
+
+<!--    }-->
+<!--    function showEditForm(id) {-->
+<!--        $("#exampleModal1").modal("show");-->
+
+<!--        $.ajax({-->
+<!--            type: "GET",-->
+<!--            headers:{-->
+<!--                Authorization: 'Bearer ' + localStorage.getItem("token")-->
+<!--            },-->
+<!--            url: "http://localhost:8080/room/" + id,-->
+<!--            success: function (data) {-->
+<!--                console.log(data)-->
+<!--                document.getElementById('idRoom').value = data.idRoom;-->
+<!--                document.getElementById('roomTypeEdit').value = data.roomType;-->
+<!--                document.getElementById('roomKindEdit').value = data.roomKind;-->
+<!--                document.getElementById('viewEdit').value = data.view;-->
+<!--                document.getElementById('statusRoomEdit').value = data.statusRoom;-->
+<!--                document.getElementById('priceRoomEdit').value = data.priceRoom;-->
+<!--                document.getElementById('newFile').innerHTML = `<img src="photos/${data.picture1}" width="100px" ">`;-->
+
+<!--            }-->
+<!--        })-->
+<!--    }-->
+
+
+<!--    function update() {-->
+<!--        let id = document.getElementById('id').value;-->
+<!--        let formData = new FormData(editForm);-->
+<!--        $.ajax({-->
+<!--            type: "PUT",-->
+<!--            headers:{-->
+<!--                Authorization: 'Bearer ' + localStorage.getItem("token")-->
+<!--            },-->
+<!--            enctype: 'multipart/form-data',-->
+<!--            url: "http://localhost:8080/room/" + id,-->
+<!--            data: formData,-->
+<!--            processData: false,-->
+<!--            contentType: false,-->
+<!--            cache: false,-->
+<!--            success: function () {-->
+
+<!--                // $('#exampleModal').modal('hide');-->
+
+<!--                loadData();-->
+<!--                editForm.reset();-->
+<!--            },-->
+<!--            error: function (error) {-->
+<!--                console.log(error)-->
+<!--            }-->
+<!--        })-->
+<!--    }-->
+<!--    function showDeleteForm(id) {-->
+<!--        if (confirm("Are you sure ???")) {-->
+<!--            $.ajax({-->
+<!--                headers:{-->
+<!--                    Authorization: 'Bearer ' + localStorage.getItem("token")-->
+<!--                },-->
+<!--                type: 'DELETE',-->
+<!--                url: 'http://localhost:8080/room/' + id,-->
+<!--                success: function () {-->
+<!--                    loadData()-->
+<!--                },-->
+<!--                error: function (error) {-->
+<!--                    console.log(error)-->
+<!--                }-->
+<!--            })-->
+<!--        }-->
+<!--    }-->
+
+<!--</script>-->
 </body>
 </html>
