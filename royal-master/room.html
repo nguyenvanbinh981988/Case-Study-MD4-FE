@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+            crossorigin="anonymous"></script>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal" onclick="showAddForm() ">Add</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="content">
+
+</div>
+<div class="row">
+    <div class="col-12">
+        <h3 style="text-align: center">Room List</h3>
+        <table class="table table-hover table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">roomType</th>
+                <th scope="col">roomKind</th>
+                <th scope="col">view</th>
+                <th scope="col">statusRoom</th>
+                <th scope="col">priceRoom</th>
+                <th scope="col">picture1</th>
+                <!--                <th scope="col">picture2</th>-->
+                <!--                <th scope="col">picture3</th>-->
+            </tr>
+            </thead>
+            <tbody id="list">
+
+            </tbody>
+        </table>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addForm">
+                        <label> roomType</label>
+                        <input type="text" name="roomType" class="form-control">
+                        <label> roomKind </label>
+                        <input type="number" name="roomKind" class="form-control">
+                        <label> view </label>
+                        <input type="text" name="view" class="form-control">
+                        <label> statusRoom </label>
+                        <input type="text" name="statusRoom" class="form-control">
+                        <label> Price </label>
+                        <input type="number" name="priceRoom" class="form-control">
+                        <label> Image </label>
+                        <input type="file" name="file" class="form-control">
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" data-dismiss="modal" onclick="add()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <input type="hidden" id="id">
+                    <label> Name </label>
+                    <input type="text" name="name" class="form-control" id="nameEdit">
+                    <label> Address </label>
+                    <input type="text" name="address" class="form-control" id="addressEdit">
+                    <label> Bedroom </label>
+                    <input type="number" name="numberOfBedroom" class="form-control" id="bedroomEdit">
+                    <label> Bathroom </label>
+                    <input type="number" name="numberOfBathroom" class="form-control" id="bathroomEdit">
+                    <label> Price </label>
+                    <input type="number" name="pricePerDay" class="form-control" id="priceEdit">
+                    <label> Image </label>
+                    <div id="newFile"></div>
+                    <input type="file" name="fileEdit" class="form-control">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" data-dismiss="modal" onclick="update()">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="login">
+                    <label> Username </label>
+                    <input type="text" name="usernameLogin" id="usernameLogin" class="form-control">
+                    <label> Password</label>
+                    <input type="text" name="passwordLogin" id="passwordLogin" class="form-control">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" data-dismiss="modal" onclick="loginUser()">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let tbody = document.getElementById("list");
+    let addForm = document.getElementById("addForm");
+    let editForm = document.getElementById("editForm");
+    loadData()
+    function loadData() {
+        $.ajax({
+            type: "GET",
+            headers:{
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            },
+            url: 'http://localhost:8080/room',
+            success: function (data) {
+                console.log(data)
+                display(data);
+
+
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+
+    }
+    function display(data) {
+        let str = "";
+        console.log(data)
+        for (let i = 0; i < data.length; i++) {
+            str += `<tr>
+                                <td>${i + 1}</td>
+                                <td>${data[i].roomType}</td>
+                                <td>${data[i].roomKind}</td>
+                                <td>${data[i].view}</td>
+                                <td>${data[i].statusRoom}</td>
+                                <td>${data[i].priceRoom}</td>
+                                <td><img src = "picture1/${data[i].picture1}" width="100px"></td>
+                                <td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1" onclick="showEditForm(${data[i].idRoom})">Edit</button></td>
+                                <td><button class="btn btn-primary" onclick="showDeleteForm(${data[i].idRoom})">Delete</button></td>
+                           </tr>`
+        }
+        tbody.innerHTML = str;
+    }
+
+
+    function showAddForm() {
+        $("#exampleModal").modal("show");
+
+    }
+    function add() {
+        let formData = new FormData(addForm);
+        console.log(formData)
+        $.ajax({
+            type: "POST",
+            headers:{
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            },
+
+            enctype: 'multipart/form-data',
+            url: "http://localhost:8080/room",
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 1000000,
+            success: function (data) {
+                console.log(data)
+                $("#exampleModal").modal("hide");
+                loadData()
+                addForm.reset();
+
+            },
+            errors: function (error) {
+                console.log(error)
+            }
+        })
+
+    }
+    function showEditForm(id) {
+        $("#exampleModal1").modal("show");
+
+        $.ajax({
+            type: "GET",
+            headers:{
+                Authorization: 'Bearer ' + localStorage.getItem("token")
+            },
+            url: "http://localhost:8080/room/" + id,
+            success: function (data) {
+                console.log(data)
+                document.getElementById('idRoom').value = data.idRoom;
+                document.getElementById('roomTypeEdit').value = data.roomType;
+                document.getElementById('roomKindEdit').value = data.roomKind;
+                document.getElementById('viewEdit').value = data.view;
+                document.getElementById('statusRoomEdit').value = data.statusRoom;
+                document.getElementById('priceRoomEdit').value = data.priceRoom;
+                document.getElementById('newFile').innerHTML = `<img src="photos/${data.picture1}" width="100px" ">`;
+
+            }
+        })
+    }
+
+
+    function update() {
+        let id = document.getElementById('id').value;
+        let formData = new FormData(editForm);
+        $.ajax({
+            type: "PUT",
+            headers:{
+                Authorization: 'Bearer ' + localStorage.getItem("token")
+            },
+            enctype: 'multipart/form-data',
+            url: "http://localhost:8080/room/" + id,
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function () {
+
+                // $('#exampleModal').modal('hide');
+
+                loadData();
+                editForm.reset();
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+    }
+    function showDeleteForm(id) {
+        if (confirm("Are you sure ???")) {
+            $.ajax({
+                headers:{
+                    Authorization: 'Bearer ' + localStorage.getItem("token")
+                },
+                type: 'DELETE',
+                url: 'http://localhost:8080/room/' + id,
+                success: function () {
+                    loadData()
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            })
+        }
+    }
+
+</script>
+</body>
+</html>
