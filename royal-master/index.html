@@ -17,6 +17,10 @@
         <!-- main css -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="../jsRoom/room.js"></script>
+
+
     </head>
     <body>
         <!--================Header Area =================-->
@@ -144,47 +148,8 @@
                     <h2 class="title_color">Hotel Accomodation</h2>
                     <p>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, </p>
                 </div>
-                <div class="row mb_30">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="accomodation_item text-center">
-                            <div class="hotel_img">
-                                <img src="image/room1.jpg" alt="">
-                                <a href="#" class="btn theme_btn button_hover">Book Now</a>
-                            </div>
-                            <a href="#"><h4 class="sec_h4">Double Deluxe Room</h4></a>
-                            <h5>$250<small>/night</small></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="accomodation_item text-center">
-                            <div class="hotel_img">
-                                <img src="image/room2.jpg" alt="">
-                                <a href="#" class="btn theme_btn button_hover">Book Now</a>
-                            </div>
-                            <a href="#"><h4 class="sec_h4">Single Deluxe Room</h4></a>
-                            <h5>$200<small>/night</small></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="accomodation_item text-center">
-                            <div class="hotel_img">
-                                <img src="image/room3.jpg" alt="">
-                                <a href="#" class="btn theme_btn button_hover">Book Now</a>
-                            </div>
-                            <a href="#"><h4 class="sec_h4">Honeymoon Suit</h4></a>
-                            <h5>$750<small>/night</small></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="accomodation_item text-center">
-                            <div class="hotel_img">
-                                <img src="image/room4.jpg" alt="">
-                                <a href="#" class="btn theme_btn button_hover">Book Now</a>
-                            </div>
-                            <a href="#"><h4 class="sec_h4">Economy Double</h4></a>
-                            <h5>$200<small>/night</small></h5>
-                        </div>
-                    </div>
+                <div class="row mb_30" id="roomList">
+
                 </div>
             </div>
         </section>
@@ -487,3 +452,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="js/custom.js"></script>
     </body>
 </html>
+<script src="../jsRoom/room.js"></script>
