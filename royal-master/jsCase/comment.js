@@ -39,7 +39,7 @@ function showData(data) {
                                 <div class="single-comment justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
                                         <div class="desc">
-                                            <h5><a href="#">${c.appUser.idUser}</a></h5>
+                                            <h5><a href="#">${c.appUser.nameUser}</a></h5>
                                             <p class="date">${c.dateComment}</p>
                                             <p class="comment">
                                                 ${c.content}
@@ -85,4 +85,34 @@ function showCountComment(data){
     }
     document.getElementById("countComment").innerHTML = count
 }
+
+function create() {
+    let user = $("#name").val();
+    let content = $("#content").val();
+    let room = $("#idRoom").val();
+    let date = $("#date").val();
+    let comment = {
+        appUser: user,
+        content: content,
+        dateComment : date,
+        room : room
+    }
+    $.ajax({
+        type: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: "http://localhost:8080/comment",
+        data: JSON.stringify(comment),
+        //xử lý khi thành công
+        success: function (data) {
+            getData();
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}
+
 
