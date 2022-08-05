@@ -50,28 +50,28 @@ function showData(data) {
 
 
 
-function search() {
-    let search = document.getElementById("search").value;
-    if (search==""){
-       getData()
-
-    }else {
-        $.ajax({
-            type: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            url: "http://localhost:8080/admin/search?email=" + search,
-            //xử lý khi thành công
-            success: function (data) {
-                console.log(data)
-                showData(data);
-            },
-            error: function (err) {
-                console.log(err)
-            }
-        })
-    }
-
-}
+// function search() {
+//     let search = document.getElementById("search").value;
+//     if (search==""){
+//       //  getData()
+//
+//     }else {
+//         $.ajax({
+//             type: "GET",
+//             headers: {
+//                 'Accept': 'application/json',
+//                 'Content-Type': 'application/json'
+//             },
+//             url: "http://localhost:8080/admin/search?email=" + search,
+//             //xử lý khi thành công
+//             success: function (data) {
+//                 console.log(data)
+//                 showData(data);
+//             },
+//             error: function (err) {
+//                 console.log(err)
+//             }
+//         })
+//     }
+//
+// }
