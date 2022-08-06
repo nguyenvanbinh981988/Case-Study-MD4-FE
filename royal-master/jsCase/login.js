@@ -1,44 +1,64 @@
+function login(event) {
+    event.preventDefault();
+    let username = document.getElementById("inputUserName").value
+    let password = document.getElementById("inputPassword").value;
 
-    let token = localStorage.getItem("token");
+    let appUser = {
+        nameUser: username,
+        passwordUser: password
+    }
     $.ajax({
-    type: "GET",
-    headers: {
-    'Accept': 'application/json'
-},
-    beforeSend: function (xhr) {
-    xhr.setRequestHeader ("Authorization", "Bearer " + token);
-},
-    url: "http://localhost:8080/",
-    success: function (data) {
-    show(data)
-},
-    error: function (err) {
-    console.log(err)
+        type: "POST",
+        headers: {
+            //kiểu dữ liệu nhận về
+            // 'Accept': 'application/json',
+            // kiểu truyền đi
+            'Content-Type': 'application/json'
+        },
+        url: "http://localhost:8080/login",
+        data: JSON.stringify(appUser),
+        //xử lý khi thành công
+        success: function (data) {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("idUser",data.id);
+            location.href = "index.html"
+        },
+        error: function (err) {
+            location.href = "Login.html"
+        }
+    })
 }
-})
+function register(event){
+    event.preventDefault();
+    let username = document.getElementById("nameUser").value;
+    let cccdUser =document.getElementById("cccdUser").value;
+    let phoneUser = document.getElementById("phoneUser").value;
+    let email = document.getElementById("email").value;
+    let passwordUser= document.getElementById("passwordUser").value;
+    let appUser = {
+        nameUser: username,
+        cccdUser: cccdUser,
+        phoneUser :phoneUser,
+        email:email,
+        passwordUser:passwordUser
+    }
+    $.ajax({
+        type: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: "http://localhost:8080/register",
+        data: JSON.stringify(appUser),
 
-    function parseJwt (token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-}).join(''));
-
-    return JSON.parse(jsonPayload);
+        //xử lý khi thành công
+        success: function (data){
+            console.log(data);
+            location.href = "Login.html"
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
 }
-
-    console.log("parseJwt(token)");
-    console.log(parseJwt(token));
-
-    function show(data) {
-    let str = "";
-    for (const u of data) {
-    str += `<tr>
-                        <td>${u.idUser}</td>
-                        <td>${u.nameUser}</td>
-                        <td>${u.passwordUser}</td>
-                    </tr>`
-}
-    document.getElementById("show").innerHTML = str;
-}
-
