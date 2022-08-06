@@ -25,6 +25,9 @@
             </li>
         </ul>
     </div>
+    <div class="form-inline my-2 my-lg-0">
+        <input type="text" id="search" placeholder="search" oninput="search()">
+    </div>
 </nav>
 
 <div id="content">
@@ -358,7 +361,7 @@
             priceRoom: priceRoom,
             img: data
         }
-console.log(room)
+        console.log(room)
         $.ajax({
                 type: "POST",
                 headers: {
@@ -370,7 +373,7 @@ console.log(room)
                 //xử lý khi thành công
                 success: function (data) {
                     alert("them thanh cong")
-                   loadData()
+                    loadData()
                 },
                 error: function (err) {
                     console.log(err)
@@ -418,7 +421,18 @@ console.log(room)
             })
         }
     }
-
+    //search
+    function search() {
+        let searchName = document.getElementById("search");
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/room/search?name=" + searchName.value,
+            success: function (data) {
+               console.log(data)
+                display(data)
+            }
+        });
+    }
 </script>
 </body>
 </head></html>
