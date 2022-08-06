@@ -46,7 +46,7 @@ function register(event){
     $.ajax({
         type: "POST",
         headers: {
-            'Accept': 'application/json',
+            // 'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         url: "http://localhost:8080/register",
@@ -55,10 +55,43 @@ function register(event){
         //xử lý khi thành công
         success: function (data){
             console.log(data);
-            location.href = "Login.html"
+            location.href="Login.html"
         },
         error: function (err) {
             console.log(err)
         }
     })
+}
+function logout() {
+    window.localStorage.setItem("token","")
+    window.localStorage.setItem("userName","")
+    window.location.href = "Login.html"
+}
+function forgotpass(event){
+    event.preventDefault();
+    let username = document.getElementById("nameUser").value;
+    let email = document.getElementById("email").value;
+    let Appuser = {
+        nameUser: username,
+        email:email,
+    }
+    $.ajax({
+        type: "POST",
+        headers: {
+            // 'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        url: "http://localhost:8080/forgotpass",
+        data: JSON.stringify(Appuser),
+
+        //xử lý khi thành công
+        success: function (data){
+            console.log(data);
+            location.href="Login.html"
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+
 }

@@ -25,6 +25,7 @@
         <!-- main css -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
+        <script src="jsCase/login.js"></script>
     </head>
     <body>
         <!--================Header Area =================-->
@@ -41,16 +42,18 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                            <li class="nav-item"><a class="nav-link" href="showadmin.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="showadmin.html">Home </a></li>
+
+                            <!--                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
                             <li class="nav-item submenu dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
+                            <a  class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item"><a class="nav-link" href="showRoom.html">Show Room</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#">Turnover </a></li>
+                                    <li class="nav-item "><a class="nav-link" onclick="logout()" >Log Out</a></li>
+
                                 </ul>
-                            </li> 
-<!--                            <li class="nav-item "><a class="nav-link" href="elements.html">Elemests</a></li>-->
-<!--                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
+                            </li>
                         </ul>
                     </div> 
                 </nav>
@@ -130,7 +133,7 @@
 			</div>
 		</div>
 
-        
+
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="js/jquery-3.2.1.min.js"></script>

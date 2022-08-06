@@ -17,6 +17,7 @@
         <!-- main css -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
+        <script src="jsCase/login.js"></script>
     </head>
     <body>
         <!--================Header Area =================-->
@@ -46,6 +47,12 @@
                             </li> 
                             <li class="nav-item"><a class="nav-link" href="elements.html">Elemests</a></li>
                             <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                            <li class="nav-item submenu dropdown">
+                                <a  class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="nameuser">Name user </a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" onclick="logout()">Log out</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div> 
                 </nav>
