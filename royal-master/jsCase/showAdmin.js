@@ -32,7 +32,7 @@ function showData(data) {
     let str = "";
     for (let i = 0; i < data.length; i++) {
         str +=  `  
-         <tr>
+         <tr><td>${i+1}</td>
             <td>${data[i].nameUser}</td>
             <td>${data[i].cccdUser}</td>
             <td> ${data[i].phoneUser}</td>
@@ -53,8 +53,7 @@ function showData(data) {
 function search() {
     let search = document.getElementById("search").value;
     if (search==""){
-      //  getData()
-
+       getData();
     }else {
         $.ajax({
             type: "GET",

@@ -22,7 +22,7 @@ function login(event) {
             console.log(data);
             localStorage.setItem("token", data.token);
             localStorage.setItem("idUser",data.id);
-            location.href = "index.html"
+            location.href = "showadmin.html"
         },
         error: function (err) {
             location.href = "Login.html"
