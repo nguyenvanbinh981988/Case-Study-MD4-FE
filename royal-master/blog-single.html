@@ -165,6 +165,9 @@
                                 </div>									
                             </div>
                         </div>
+                        <br>
+                        <br>
+                        <br>
                         <p id="countComment"></p>
                         <div class="comments-area" id="showComment">
                         </div>
@@ -172,19 +175,19 @@
                                 <h4>Để Lại Bình Luận</h4>
                                 <div class="form-group form-inline">
                                   <div class="form-group col-lg-6 col-md-6 name">
-                                    <input type="text" class="form-control" id="name"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'" readonly>
+                                    <input class="form-control" id="idUser" name="nameUser" value="" readonly>
                                   </div>
                                   <div class="form-group col-lg-6 col-md-6 email">
-                                    <input type="email" class="form-control" id="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
-                                  </div>										
+                                    <input type="datetime-local" class="form-control" id="date">
+                                  </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'">
+                                    <input type="text" class="form-control" >
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control mb-10" rows="5" name="content" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+                                    <textarea class="form-control mb-10" rows="5" id="content"  name="content" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
                                 </div>
-                                <a onclick="create()" class="primary-btn button_hover">Post Comment</a>
+                                <button onclick="create()" class="primary-btn button_hover">Post Comment</button>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -334,6 +337,7 @@
                     </div>
                 </div>
             </div>
+            </div>>
         </section>
         <!--================Blog Area =================-->
         

@@ -7,13 +7,16 @@ function showRoom(){
         $.ajax({
             type: "GET",
             headers:{
-                // Authorization: 'Bearer ' + localStorage.getItem('token')
+                Authorization: 'Bearer ' + localStorage.getItem('token'),
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            url: 'http://localhost:8080/room',
+            url: 'http://localhost:8080/user/room',
             success: function (data) {
-                console.log(data)
+                // console.log(data)
+                // console.log(data)
+                // console.log(data)
+                // console.log(data)
                 display(data);
 
 
@@ -24,42 +27,54 @@ function showRoom(){
         })
     }
     function display(data) {
-        let str = "";
+        let str = "" ;
+        console.log(data)
+        console.log(data)
+        console.log(data)
         console.log(data)
         for (const r of data) {
             str += `<div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
                                 <img src="${r.pictures[0].img}" alt="">
-                                <a href="blog-single.html?id=${r.idRoom}" class="btn theme_btn button_hover">Chi tiết Phòng</a>
+                                <button type="button" onclick="getDetail(${r.idRoom})" class="btn theme_btn button_hover">>Chi tiết Phòng</></a>
                             </div>
                             <a href="#"><h4 class="sec_h4">Double Deluxe Room</h4></a>
                             <h5>${r.priceRoom}</h5>
                         </div>
                     </div>`
+            console.log(r.idRoom)
+            console.log(r.idRoom)
+            console.log(r.idRoom)
+            console.log(r.idRoom)
         }
-
         console.log(str)
         document.getElementById("roomList").innerHTML=str
     }
-function showRoomDetail (id){
-    $.ajax({
-        type: "POST",
-        headers:{
-            // Authorization: 'Bearer ' + localStorage.getItem('token')
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        url: 'http://localhost:8080/showroomdetail/'+id,
-        success: function (data) {
-            console.log(data)
-            localStorage.setItem("room",data);
-        },
-        error: function (error) {
-            console.log(error)
-        }
-    })
+
+
+function getDetail(id){
+    window.localStorage.setItem("id",id);
+    window.location.href="blog-single.html";
 }
+// function showRoomDetail (id){
+//     $.ajax({
+//         type: "GET",
+//         headers:{
+//             Authorization: 'Bearer ' + localStorage.getItem('token'),
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json'
+//         },
+//         url: 'http://localhost:8080/user/'+ id,
+//         success: function (data) {
+//
+//         },
+//         error: function (error) {
+//             console.log(error)
+//         }
+//     })
+// }
+
 
     //
     // function showAddForm() {

@@ -129,14 +129,15 @@
                                                     <option value="3">Room 03</option>
                                                 </select>
                                             </div>
-                                            <a class="book_now_btn button_hover" href="#">Book Now</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                            <a class="
+                                </div>book_now_btn button_hover" href="#">Book Now</a>
+                            </div>
+                        </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
         <!--================Banner Area =================-->
@@ -454,5 +455,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 </html>
 <script src="../jsRoom/room.js"></script>
 <script>
+    let idUser = localStorage.getItem("idUser")
     showRoom();
+    console.log(idUser)
 </script>
