@@ -119,6 +119,7 @@ function createRoom(Array) {
             console.log(data)
             console.log(data)
             console.log(data)
+            location.href="room.html"
         },
         error: function (err) {
             console.log(err)

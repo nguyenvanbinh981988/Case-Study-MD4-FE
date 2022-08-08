@@ -6,6 +6,8 @@ $.ajax({
     }, url: 'http://localhost:8080/room', //xử lý khi thành công
     success: function (data) {
         console.log(data.content)
+        console.log(data.content)
+        console.log(data.content)
         showRoom(data.content);
         showHotelDv()
     }, error: function (err) {
@@ -17,7 +19,6 @@ function showRoom(data) {
     let str = "";
     for (let i = 0; i < data.length; i++) {
         let picI = data[i].pictures[0].img
-        console.log(picI)
         str += `<div class="col-md-3">
                                    <div class="blog_info text-right">
                                         <div class="post_tag">
@@ -78,29 +79,29 @@ function showHotelDv() {
 }
 
 
-function findRoomB() {
-    let roomType = document.getElementById("findRoomType").value;
-    let roomKind = document.getElementById("findRoomKind").value;
-    let minPriceRoom = document.getElementById("findMinPrice").value;
-    let maxPriceRoom = document.getElementById("findMaxPrice").value;
-
-    $.ajax({
-        type: "Get", headers: {
-            'Accept': 'application/json', 'Content-text': 'application/json'
-        }, url: 'http://localhost:8080/room', //xử lý khi thành công
-        success: function (data) {
-            find(data.content)
-        }, error: function (err) {
-            console.log(err)
-        }
-    })
-
-
-    function find(data) {
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].roomType != roomType || data[i].roomKind != roomKind || data[i].priceRoom < minPriceRoom || data[i].priceRoom > maxPriceRoom) {
-                data.splice(i, 1)
-            }
-        }
-    }
-}
+// function findRoomB() {
+//     let roomType = document.getElementById("findRoomType").value;
+//     let roomKind = document.getElementById("findRoomKind").value;
+//     let minPriceRoom = document.getElementById("findMinPrice").value;
+//     let maxPriceRoom = document.getElementById("findMaxPrice").value;
+//
+//     $.ajax({
+//         type: "Get", headers: {
+//             'Accept': 'application/json', 'Content-text': 'application/json'
+//         }, url: 'http://localhost:8080/room', //xử lý khi thành công
+//         success: function (data) {
+//             find(data.content)
+//         }, error: function (err) {
+//             console.log(err)
+//         }
+//     })
+//
+//
+//     function find(data) {
+//         for (let i = 0; i < data.length; i++) {
+//             if (data[i].roomType != roomType || data[i].roomKind != roomKind || data[i].priceRoom < minPriceRoom || data[i].priceRoom > maxPriceRoom) {
+//                 data.splice(i, 1)
+//             }
+//         }
+//     }
+// }
