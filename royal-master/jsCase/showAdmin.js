@@ -1,5 +1,4 @@
 getData();
-
 function getData() {
     $.ajax({
         type: "GET",
@@ -10,12 +9,11 @@ function getData() {
         url: "http://localhost:8080/admin",
         //xử lý khi thành công
         success: function (data) {
-            console.log("data")
-            console.log(data)
             showData(data);
         },
         error: function (err) {
             console.log(err)
+            location.href="Login.html"
         }
     })
 }
@@ -28,6 +26,7 @@ function showrole(data){
     }
     return str;
 }
+
 function showData(data) {
     let str = "";
     for (let i = 0; i < data.length; i++) {
@@ -45,6 +44,7 @@ function showData(data) {
     }
 
     document.getElementById("show").innerHTML = str;
+
 }
 
 
@@ -74,5 +74,18 @@ function search() {
     }
 
 }
+// function showname(data){
+//     let str = "";
+//     for (let i = 0; i < data.length; i++) {
+//         if (i === 1)
+//         str +=`
+//                ${data[i].nameUser}
+//
+//          `
+//     }
+//     console.log(data)
+//     document.getElementById("nameUser").innerHTML = str;
+// }
+
 
 

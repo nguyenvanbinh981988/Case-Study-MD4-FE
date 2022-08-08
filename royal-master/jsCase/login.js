@@ -23,6 +23,7 @@ function login(event) {
             localStorage.setItem("token", data.token);
             localStorage.setItem("idUser",data.id);
             location.href = "showadmin.html"
+
         },
         error: function (err) {
             location.href = "Login.html"
@@ -37,11 +38,11 @@ function register(event){
     let email = document.getElementById("email").value;
     let passwordUser= document.getElementById("passwordUser").value;
     let appUser = {
-        nameUser: username,
-        cccdUser: cccdUser,
-        phoneUser :phoneUser,
-        email:email,
-        passwordUser:passwordUser
+        nameUser: username != null,
+        cccdUser: cccdUser!= null,
+        phoneUser :phoneUser!= null,
+        email:email!= null,
+        passwordUser:passwordUser!= null
     }
     $.ajax({
         type: "POST",
@@ -54,17 +55,16 @@ function register(event){
 
         //xử lý khi thành công
         success: function (data){
-            console.log(data);
             location.href="Login.html"
         },
         error: function (err) {
-            console.log(err)
+            location.href="Register.html"
         }
     })
 }
 function logout() {
     window.localStorage.setItem("token","")
-    window.localStorage.setItem("userName","")
+    window.localStorage.setItem("idUser","0")
     window.location.href = "Login.html"
 }
 function forgotpass(event){
