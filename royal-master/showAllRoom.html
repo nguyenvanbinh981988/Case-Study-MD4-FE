@@ -17,7 +17,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
-        <script src="js/createRoom.js"></script>
+        <script src="js/showAllRoom.js"></script>
+
 
     </head>
     <body>
@@ -74,35 +75,12 @@
         <section class="about_history_area section_gap">
             <div class="container">
                 <div class="row">
-                    <table border="1" cellpadding="5" style="background-color: antiquewhite">
-                        <tr>
-                            <th>Tên phòng</th>
-                            <th>số lượng người</th>
-                            <th>Phòng thuộc khu</th>
-                            <th>Mô tả về phòng</th>
-                            <th>Tình trạng phòng</th>
-                            <th>Giá phòng</th>
-                            <th>Ảnh mô tả</th>
-                        </tr>
-                        <tr>
-                            <td><input type="text" id="nameRoom"></td>
-                            <td><input type="number" id="roomType"></td>
-                            <td><select id="roomKind">
-                                <option value="Hotel">Phòng khách sạn</option>
-                                <option value="Villa">Phòng biệt thự</option>
-                                <option value="separateRoom">Phòng tách biệt</option>
-                            </select></td>
-                            <td><input type="text" id="view"></td>
-                            <td><select id="statusRoom">
-                                <option value="true">Phòng có sẵn</option>
-                                <option value="false">đang sửa</option>
-                            </select> </td>
-                            <td><input type="number" id="priceRoom"></td>
-                            <td><input type="file" multiple id="picHotel" ></td>
-                        </tr>
-                    </table>
-                    <button onclick="loadFile()">Tạo phòng</button>
+                    <input type="text" id="findRoom" placeholder="nhập tên phòng cần tìm">
+                    <input type="text" id="findRoomByGuest" placeholder="nhập tên khách cần tìm">
+                    <table border="1" cellpadding="5" style="background-color: antiquewhite " id="showAllRoom" >
 
+
+                    </table>
                 </div>
             </div>
         </section>

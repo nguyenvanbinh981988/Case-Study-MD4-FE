@@ -93,8 +93,16 @@ function createRoom(Array) {
         pictures: Array
     }
 
+
+
     console.log("obj");
     console.log(obj);
+    console.log(obj);
+    console.log(obj);
+    console.log(obj);
+    console.log(obj);
+    console.log(obj);
+
 
     $.ajax({
         type: "POST",
@@ -106,8 +114,11 @@ function createRoom(Array) {
         data: JSON.stringify(obj),
         //xử lý khi thành công
         success: function (data) {
-            console.log(data.content)
-            location.href = "index.html";
+            console.log(data)
+            console.log(data)
+            console.log(data)
+            console.log(data)
+            console.log(data)
         },
         error: function (err) {
             console.log(err)
