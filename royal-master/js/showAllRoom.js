@@ -7,7 +7,6 @@ $.ajax({
     success: function (data) {
         console.log(data.content)
         showRoom(data.content);
-        showHotelDv()
     }, error: function (err) {
         console.log(err)
     }
@@ -23,16 +22,15 @@ function showRoom(data) {
                             <th>Tình trạng phòng</th>
                             <th>Giá phòng</th>
                             <th>Mô tả về phòng</th>
-                            <th>chỉnh sửa</th>
                             <th>Ảnh</th>
-
+                            <th></th>
+                             <th>chỉnh sửa</th>
                         </tr>`;
     for (let i = 0; i < data.length; i++) {
         let picI = "";
         for (let j = 0; j < data[i].pictures.length; j++) {
-            picI += `<td><img src= ${data[i].pictures[i].img} alt="" style="width: 150px"><br>
-                     <button "><a href="edit.html?id=${data[i].pictures[i].id}">Edit</a> </button>
-                <button onclick="Deleteblog(${data[i].pictures[i].id})" >Delete</button></td>`
+            picI += `<td><img src= ${data[i].pictures[j].img} alt="" style="width: 150px; height: 150px"><br>
+                    `;
         }
         console.log(picI)
         str += `       <tr>
@@ -41,12 +39,17 @@ function showRoom(data) {
                             <td>${data[i].roomKind}</td>
                             <td>${data[i].statusRoom}</td>
                             <td>${data[i].priceRoom} VND</td>  
-                            <td>${data[i].view}</td>
+                            <td>${data[i].view}</td> 
+                                            ${picI}   
                 <td><button "><a href="edit.html?id=${data[i].id}">Edit</a> </button>
-                <button onclick="Deleteblog(${data[i].id})" >Delete</button></td>    
-                                            ${picI}            
-                        </tr>`
+                <button type="button" onclick="deleteRoom(${data[i].idRoom})" >Delete</button></td>            
+                        </tr>`;
     }
     let total = a + str;
     document.getElementById("showAllRoom").innerHTML = total;
 }
+
+
+//------------------------------------------------------------------------------
+
+
